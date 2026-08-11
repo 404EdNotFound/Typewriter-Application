@@ -1,7 +1,7 @@
 # Please Read before viewing all files
 
 # Typewriter-Application
-This is a UI Interface of a Typewriter written in Python
+This is a UI Interface of a Typewriter written in Python with a Real Time Word and Character Counter. Useful for typing anything expressive or random.
 
 # Features
 * Class for managing functoinality of the Typing Test
