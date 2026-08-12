@@ -7,9 +7,10 @@ class Textbox():
     # Initialising the attributes of the class
     def __init__(self):
         self.text = ""
+        self.letterSet = []
         self.characterCount = self.wordCount = 0
     
-    # Retrieves teh text
+    # Retrieves the text
     def getText(self):
         self.text = textBox.get("1.0", END).strip()
         return self.text
@@ -32,7 +33,7 @@ class Textbox():
             retrievedText = textBoxObject.getText()
             file.write(retrievedText)
         
-        textBoxObject.clearText()
+        textBoxObject.clearText() #Deletes the text from the textbox
     
     # Loads the Text
     def loadFile(self):
@@ -48,11 +49,19 @@ class Textbox():
         with open(filepath, "r") as file:
             retrievedText = file.read()
             textBox.insert(END, retrievedText)
+            retrievedText = textBoxObject.getText() #assigns the text to the retrieved text
+        
+        # Uploading the word count and calculating methods (not the best idea -> Uses Repetition)
+        self.calculateCharacterCount()
+        self.calculateWordCount()
+        statsLabel.config(text = f"Words: {self.wordCount}, Characters: {self.characterCount}")
     
     # Calculates Word Count
     def calculateWordCount(self):
         self.text = self.getText()
-        self.wordCount = len(self.text.split(" "))
+        self.letterSet = self.text.split(" ")
+        self.letterSet = [item for item in self.letterSet if item != ''] #Separates the spaces
+        self.wordCount = len(self.letterSet)
     
     # Calculates Character Count
     def calculateCharacterCount(self):
@@ -75,8 +84,8 @@ def mainPage():
     title = Label(text_box_window, text = "Online Typewriter!", foreground = "Black", font = ("Impact", "40", "bold", "underline"))
     textBox = Text(text_box_window)
     
-    wordCharFrame = Frame(text_box_window, background = "Black")
-    statsLabel = Label(wordCharFrame, text = f"Words: , Characters: ")
+    wordCharFrame = Frame(text_box_window, background = "Black", highlightbackground = "Black")
+    statsLabel = Label(wordCharFrame, text = f"Words: , Characters: ", font = ("Impact", "40", "bold", "underline"))
     
     buttonFrame = Frame(text_box_window, background = "Black", highlightbackground = "Black", highlightthickness = 2)
     clearButton = Button(buttonFrame, text = "Clear!", command = textBoxObject.clearText)
