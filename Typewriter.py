@@ -81,16 +81,18 @@ def mainPage():
     text_box_window = Tk()
     text_box_window.title("Online TypeWriter")
 
-    title = Label(text_box_window, text = "Online Typewriter!", foreground = "Black", font = ("Impact", "40", "bold", "underline"))
+    title = Label(text_box_window, text = "Online Typewriter!", foreground = "Black", background = "Blue", font = ("Impact", "40", "bold", "underline"))
     textBox = Text(text_box_window)
     
-    wordCharFrame = Frame(text_box_window, background = "Black", highlightbackground = "Black")
-    statsLabel = Label(wordCharFrame, text = f"Words: , Characters: ", font = ("Impact", "40", "bold", "underline"))
+    wordCharFrame = Frame(text_box_window, background = "Blue")
+    statsLabel = Label(wordCharFrame, background = "Blue", text = f"Words: , Characters: ", font = ("Impact", "40", "bold", "underline"))
     
     buttonFrame = Frame(text_box_window, background = "Black", highlightbackground = "Black", highlightthickness = 2)
     clearButton = Button(buttonFrame, text = "Clear!", command = textBoxObject.clearText)
     saveButton = Button(buttonFrame, text = "Save Text", command = textBoxObject.saveFile)
     loadButton = Button(buttonFrame, text = "Load Text", command = textBoxObject.loadFile)
+    
+    text_box_window.config(background = "Blue")
 
     title.pack()
     textBox.pack()
